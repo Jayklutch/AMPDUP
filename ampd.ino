@@ -1,19 +1,19 @@
-// Load Wi-Fi library
+// Load up the Wi-Fi library
 #include <ESP8266WiFi.h>
 
-// Replace with your network credentials
+// Chuck in some network credentials
 const char* ssid     = "Dogpile";
 const char* password = "limetree";
 
-// Set web server port number to 80
+// Set web server port to 80
 WiFiServer server(80);
 
-// Variable to store the HTTP request
+// Placeholder Variable to store the HTTP request
 String header;
 
-// Auxiliar variables to store the current output state
-String output5State = "off";
-String output4State = "off";
+// Variables to store the current output state
+String oi4State = "off";
+String oi5State = "off";
 
 // Assign output variables to GPIO pins
 const int output5 = 5;
@@ -79,19 +79,19 @@ void loop(){
             // turns the GPIOs on and off
             if (header.indexOf("GET /5/on") >= 0) {
               Serial.println("GPIO 5 on");
-              output5State = "on";
+              oi5State = "on";
               digitalWrite(output5, HIGH);
             } else if (header.indexOf("GET /5/off") >= 0) {
               Serial.println("GPIO 5 off");
-              output5State = "off";
+              oi5State = "off";
               digitalWrite(output5, LOW);
             } else if (header.indexOf("GET /4/on") >= 0) {
               Serial.println("GPIO 4 on");
-              output4State = "on";
+              oi4State = "on";
               digitalWrite(output4, HIGH);
             } else if (header.indexOf("GET /4/off") >= 0) {
               Serial.println("GPIO 4 off");
-              output4State = "off";
+              oi4State = "off";
               digitalWrite(output4, LOW);
             }
 
@@ -112,7 +112,7 @@ void loop(){
             // Display current state, and ON/OFF buttons for GPIO 5
             client.println("<p>Front Lights Currently: " + output5State + "</p>");
             // If the output5State is off, it displays the ON button
-            if (output5State=="off") {
+            if (oi5State=="off") {
               client.println("<p><a href=\"/5/on\"><button class=\"button\">Turn ON</button></a></p>");
             } else {
               client.println("<p><a href=\"/5/off\"><button class=\"button button2\">Turn OFF</button></a></p>");
@@ -121,7 +121,7 @@ void loop(){
             // Display current state, and ON/OFF buttons for GPIO 4
             client.println("<p>Rear Lights Currently: " + output4State + "</p>");
             // If the output4State is off, it displays the ON button
-            if (output4State=="off") {
+            if (oi4State=="off") {
               client.println("<p><a href=\"/4/on\"><button class=\"button\">Turn ON</button></a></p>");
             } else {
               client.println("<p><a href=\"/4/off\"><button class=\"button button2\">Turn OFF</button></a></p>");
