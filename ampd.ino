@@ -107,7 +107,7 @@ void loop(){
             client.println(".button2 {background-color: #77878A;}</style></head>");
 
             // Web Page Heading
-            client.println("<body><h1>AMPDUP Vehicle Control Module 0.0.01A</h1>");
+            client.println("<body><h1>AMPDUP Vehicle Control Module 0.0.01B</h1>");
 
             // Display current state, and ON/OFF buttons for GPIO 5
             client.println("<p>Front Lights Currently: " + output5State + "</p>");
