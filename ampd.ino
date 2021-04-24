@@ -2,8 +2,8 @@
 #include <ESP8266WiFi.h>
 
 // Chuck in some network credentials
-const char* ssid     = "Dogpile";
-const char* password = "limetree";
+const char* ssid     = "NETWORK NAME";
+const char* password = "NETWORK PASSWORD";
 
 // Set web server port to 80
 WiFiServer server(80);
